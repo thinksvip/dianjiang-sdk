@@ -1,0 +1,7 @@
+.idea
+composer.phar
+/vendor/
+.phpunit*
+*.log
+*.phar
+*.txt

@@ -1,0 +1,22 @@
+{
+  "name": "thinksvip/dianjiang-sdk",
+  "description": "API Framework for http://docs.shoplazza.com/ (店匠SDK非官方)",
+  "minimum-stability": "stable",
+  "license": "Apache-2.0",
+  "authors": [
+    {
+      "name": "thinksvip",
+      "email": "thinksvip@outlook.com",
+      "role": "Developer"
+    }
+  ],
+  "require": {
+    "ext-json": "*",
+    "php": ">=7.2",
+    "linslin/yii2-curl": "*",
+    "netresearch/jsonmapper": "^3.0"
+  },
+  "autoload": {
+    "psr-4": {"DianJiang\\": "src/"}
+  }
+}
