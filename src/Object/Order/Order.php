@@ -7,6 +7,12 @@ class Order
     // 文档地址 http://docs.shoplazza.com/#/openapi/2020-07/orders?id=%e8%ae%a2%e5%8d%95api
 
     /**
+     * id
+     * @var string|null
+     */
+    public $id = null;
+
+    /**
      * 订单编号
      * @var string|null
      */
@@ -20,13 +26,13 @@ class Order
 
     /**
      * 总价
-     * @var number
+     * @var int
      */
     public $total_price	= 0;
 
     /**
      * 官方文档未说明次字段含义
-     * @var number
+     * @var int
      */
     public $sub_total = 0;
 
@@ -110,13 +116,13 @@ class Order
 
     /**
      * 订单优惠码优惠价格
-     * @var number
+     * @var int
      */
     public $code_discount_total	= 0;
 
     /**
      * 商品折扣
-     * @var number
+     * @var int
      */
     public $line_item_discount_total = 0;
 
@@ -128,19 +134,19 @@ class Order
 
     /**
      * 订单折扣
-     * @var number
+     * @var int
      */
     public $total_discount = 0;
 
     /**
      * 总税费
-     * @var number
+     * @var int
      */
     public $total_tax = 0;
 
     /**
      * 运费
-     * @var number
+     * @var int
      */
     public $total_shipping = 0;
 
@@ -162,6 +168,17 @@ class Order
      */
     public $landing_site = null;
 
+    /**
+     * 折扣申请
+     * @var array|null
+     */
+    public $discount_applications = null;
+
+    /**
+     * ip
+     * @var string|null
+     */
+    public $browser_ip = null;
 
     /**
      * 支付信息
@@ -199,5 +216,11 @@ class Order
      * @var \DianJiang\Object\Order\LineItem[]|null
      */
     public $line_item = null;
+
+    /**
+     * 店匠返回未知字段
+     * @var \DianJiang\Object\Order\Fulfillments[]|null
+     */
+    public $fulfillments = null;
 
 }

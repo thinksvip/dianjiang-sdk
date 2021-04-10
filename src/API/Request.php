@@ -39,17 +39,20 @@ class Request
             }
         }
 
-        $request->path = "orders" . "&" . $request->query();
+        $request->path = "orders" . "?" . $request->query();
+        return $request;
     }
 
     /**
      * 获取订单详情
-     * @param int $id
+     * @param string $id
      */
-    public static function getOrderRequest(int $id)
+    public static function getOrderRequest(string $id)
     {
         $request = new Request();
-        $request->path = "order/$id";
+        $request->path = "orders/$id";
+
+        return $request;
     }
 
     /**

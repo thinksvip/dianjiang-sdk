@@ -41,11 +41,12 @@ class DianJiangAPI
     /**
      * 请求数据
      * @param Request $request
+     * @return Response|object
      * @throws \Exception
      */
     public function sendRequest(Request $request)
     {
-        $url = 'https://' . $this->shop . 'myshoplaza.com/openapi' . self::$VERSION . $request->path;
+        $url = 'https://' . $this->shop . '.myshoplaza.com/openapi' . self::$VERSION . $request->path;
 
         /* @var Response */
         $response = new Response($request);
@@ -54,7 +55,6 @@ class DianJiangAPI
             ->setHeaders([
                 'Content-Type' => 'application/json',
                 'Access-Token' => $this->accessToken,
-
             ]);
 
         // 判断请求类型
@@ -66,21 +66,19 @@ class DianJiangAPI
             $client->get($url);
         }
 
-
         // 获取请求Code
         $responseCode = $client->responseCode;
 
         if ($responseCode == 200) {
             try {
 
-                $resources = json_decode($client);
+                $resources = json_decode($client->response);
 
                 if ($resources == null || $resources === false)  throw new \Exception("Failed to parse JSON");
 
-                $response = $this->serializer->map($resources, new Response($request));
+                $response = $this->serializer->map($resources,new Response($request));
 
                 $response->status = ResponseStatus::OK;
-
             } catch (\Exception $e) {
 
                 $response->status = ResponseStatus::REQUEST_FAILED;
@@ -88,7 +86,8 @@ class DianJiangAPI
             }
         } else {
             try {
-                $resources = json_decode($client);
+
+                $resources = json_decode($client->response);
 
                 if ($resources == null || $resources === false)  throw new \Exception("Failed to parse JSON");
 

@@ -5,6 +5,13 @@ namespace DianJiang\API;
 
 class Response
 {
+
+
+    /**
+     * Server time when response was sent.
+     * @var Request
+     */
+    public $request = null;
     /**
      * Status of the request.
      * @var int
@@ -20,15 +27,15 @@ class Response
 
     /**
      * 订单列表
-     * @var \DianJiang\Object\Order\Order[]|null
+     * @var \DianJiang\Object\Order\Order[]
      */
     public $orders = null;
 
     /**
      * 订单详情
-     * @var \DianJiang\Object\Order\Order[]|null
+     * @var \DianJiang\Object\Order\Order[]
      */
-    public $order = null;
+    public $order;
 
     function __construct(Request $request)
     {
