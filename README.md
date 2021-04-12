@@ -18,7 +18,7 @@ use DianJiang\DianJiangAPI;
     // 获取授权信息
     $api = new DianJiangAPI('Access-Token','YOU_SHOP_NAME');
 
-    // 组装请求商品列表数据
+    // 组装请求订单列表数据
     $r = Request::getOrdersRequest("2021-04-09 08:40:17","2021-04-12 08:40:17",'paid');
 
     // 发起请求 获取数据
