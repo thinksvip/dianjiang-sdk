@@ -3,7 +3,7 @@
     · 通过此API，可以快速获取 PHP Object
 ## Composer
 ```
-composer require thinksvip/dianjiang-sdk: *
+composer require thinksvip/dianjiang-sdk:v0.0.1-beta1
 ```
 # Quick Example
 
