@@ -26,13 +26,13 @@ class Order
 
     /**
      * 总价
-     * @var int
+     * @var float
      */
     public $total_price	= 0;
 
     /**
      * 官方文档未说明次字段含义
-     * @var int
+     * @var float
      */
     public $sub_total = 0;
 
@@ -116,13 +116,13 @@ class Order
 
     /**
      * 订单优惠码优惠价格
-     * @var int
+     * @var float
      */
     public $code_discount_total	= 0;
 
     /**
      * 商品折扣
-     * @var int
+     * @var float
      */
     public $line_item_discount_total = 0;
 
@@ -134,19 +134,19 @@ class Order
 
     /**
      * 订单折扣
-     * @var int
+     * @var float
      */
     public $total_discount = 0;
 
     /**
      * 总税费
-     * @var int
+     * @var float
      */
     public $total_tax = 0;
 
     /**
      * 运费
-     * @var int
+     * @var float
      */
     public $total_shipping = 0;
 
@@ -182,32 +182,32 @@ class Order
 
     /**
      * 支付信息
-     * @var \DianJiang\Object\Order\PaymentLine[]|null
+     * @var \DianJiang\Object\Order\PaymentLine|null
      */
     public $payment_line = null;
 
     /**
      * 客户信息
-     * @var \DianJiang\Object\Order\Customer[]|null
+     * @var \DianJiang\Object\Order\Customer|null
      */
     public $customer = null;
 
 
     /**
      * 收货地址
-     * @var \DianJiang\Object\Order\ShippingAddress[]|null
+     * @var \DianJiang\Object\Order\ShippingAddress|null
      */
     public $shipping_address = null;
 
     /**
      * 账单地址
-     * @var \DianJiang\Object\Order\ShippingAddress[]|null
+     * @var \DianJiang\Object\Order\ShippingAddress|null
      */
     public $billing_address = null;
 
     /**
      * 物流
-     * @var \DianJiang\Object\Order\ShippingLine[]|null
+     * @var \DianJiang\Object\Order\ShippingLine|null
      */
     public $shipping_line = null;
 
@@ -215,7 +215,7 @@ class Order
      * 订单商品数据
      * @var \DianJiang\Object\Order\LineItem[]|null
      */
-    public $line_item = null;
+    public $line_items = null;
 
     /**
      * 店匠返回未知字段

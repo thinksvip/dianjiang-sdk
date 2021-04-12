@@ -33,7 +33,7 @@ class Response
 
     /**
      * 订单详情
-     * @var \DianJiang\Object\Order\Order[]
+     * @var \DianJiang\Object\Order\Order
      */
     public $order;
 

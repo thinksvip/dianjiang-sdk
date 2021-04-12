@@ -3,9 +3,6 @@
 
 namespace DianJiang\Object\Order;
 
-
-use yii\helpers\Json;
-
 class LineItem
 {
 
@@ -35,25 +32,25 @@ class LineItem
 
     /**
      * 商品图片
-     * @var json|null
+     * @var array|null
      */
     public $image = null;
 
     /**
      * 商品售价
-     * @var number
+     * @var float
      */
     public $price = 0;
 
     /**
      * 商品原价
-     * @var number
+     * @var float
      */
     public $compare_at_price = 0;
 
     /**
      * 总价
-     * @var number
+     * @var float
      */
     public $total = 0;
 
@@ -65,7 +62,7 @@ class LineItem
 
     /**
      * 重量
-     * @var number
+     * @var float
      */
     public $weight = 0;
 
@@ -82,7 +79,7 @@ class LineItem
     public $vendor = null;
     /**
      * 商品属性
-     * @var json|null
+     * @var array|null
      */
     public $properties = null;
 

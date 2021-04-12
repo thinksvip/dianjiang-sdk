@@ -27,9 +27,9 @@ class Request
     {
         $request = new Request();
 
-        $request->parameter['placed_at_min'] = $placed_at_min;
+        $request->parameter['placed_at_min'] = date(DATE_ISO8601,strtotime($placed_at_min));
 
-        $request->parameter['placed_at_max'] = $placed_at_max;
+        $request->parameter['placed_at_max'] = date(DATE_ISO8601,strtotime($placed_at_max));
 
         $request->parameter['financial_status'] = $financial_status;
 
@@ -40,6 +40,7 @@ class Request
         }
 
         $request->path = "orders" . "?" . $request->query();
+
         return $request;
     }
 
