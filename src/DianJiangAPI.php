@@ -3,7 +3,6 @@
 namespace DianJiang;
 
 use DianJiang\API\ResponseStatus;
-use DianJiang\Object\Order\Order;
 use JsonMapper;
 use DianJiang\API\Request;
 use DianJiang\API\Response;
