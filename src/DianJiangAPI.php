@@ -59,13 +59,37 @@ class DianJiangAPI
             ]);
 
         // 判断请求类型
-        if ($request->postData != null) {
+        $method = strtolower($request->method);
+        switch ($method){
+            case 'get':
+                break;
+            case 'put':
+            case 'post':
+            switch (strtolower($request->dataType)){
+                case 'form':
+                    $params = is_array($request->bodyData) ? $request->bodyData : [];
+                    $client = $client->setPostParams($params)->setHeaders(['content-length' => strlen(json_encode($request->bodyData))]);
+                    break;
+                case 'json':
+                default:
+                    $params = is_array($request->bodyData) ? json_encode($request->bodyData, JSON_UNESCAPED_UNICODE) : json_encode([]);
+                    $client = $client->setRequestBody($params);
+                    break;
+            }
+                break;
+        }
+
+        //发起请求
+        $client->$method($url);
+
+
+        /*if ($request->postData != null) {
             $client->setRequestBody(json_encode($request->postData))
                 ->setHeaders(['content-length' => strlen(json_encode($request->postData))])
                 ->post($url);
         } else {
             $client->get($url);
-        }
+        }*/
 
         // 获取请求Code
         $responseCode = $client->responseCode;
