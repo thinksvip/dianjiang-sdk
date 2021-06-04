@@ -37,6 +37,19 @@ class Response
      */
     public $order;
 
+    /**
+     * Webhook 返回
+     * @var \DianJiang\Object\Webhook
+     */
+    public $Webhook;
+
+    /**
+     * Webhook 列表
+     * @var \DianJiang\Object\Webhook[]
+     */
+    public $Webhooks;
+
+
     function __construct(Request $request)
     {
         $this->request = $request;

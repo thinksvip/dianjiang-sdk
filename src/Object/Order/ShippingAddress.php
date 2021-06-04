@@ -121,4 +121,4 @@ class ShippingAddress
      */
     public $extra_info = null;
 
-    }
+}
