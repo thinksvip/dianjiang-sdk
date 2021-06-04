@@ -14,7 +14,7 @@
     "ext-json": "*",
     "php": ">=7.2",
     "linslin/yii2-curl": "*",
-    "netresearch/jsonmapper": "^2.1.2"
+    "netresearch/jsonmapper": "*"
   },
   "autoload": {
     "psr-4": {"DianJiang\\": "src/"}
