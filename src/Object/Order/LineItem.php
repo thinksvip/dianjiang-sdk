@@ -7,6 +7,11 @@ class LineItem
 {
 
     /**
+     * 订单商品id
+     * @var string|null
+     */
+    public $id = null;
+    /**
      * 商品标题
      * @var string|null
      */

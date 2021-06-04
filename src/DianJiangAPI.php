@@ -3,11 +3,12 @@
 namespace DianJiang;
 
 use DianJiang\API\ResponseStatus;
-use DianJiang\Object\Order\Order;
+use DianJiang\API\Webhook;
 use JsonMapper;
 use DianJiang\API\Request;
 use DianJiang\API\Response;
 use linslin\yii2\curl\Curl;
+use yii\base\Exception;
 
 class DianJiangAPI
 {
@@ -148,6 +149,85 @@ class DianJiangAPI
         $response->url = $url;
 
         return $response;
+    }
+
+    /**
+     * 请求Webhook
+     * @param Webhook $webhook
+     * @return mixed
+     * @throws Exception
+     */
+    public function sendWebhook(Webhook $webhook)
+    {
+        /* @var Response */
+        $response = new Response($webhook);
+
+        $url = 'https://' . $this->shop . '.myshoplaza.com/openapi' . self::$VERSION . $webhook->path;
+        $client = $this->curl
+            ->setHeaders([
+                'Content-Type' => 'application/json',
+                'Access-Token' => $this->accessToken,
+            ]);
+
+        switch ($webhook->requestType){
+            case 'GET':
+                $client->get($url);
+                break;
+            case 'PUT':
+                $client->setRequestBody(json_encode($webhook->postData))
+                    ->setHeaders(['content-length' => strlen(json_encode($webhook->postData))])
+                    ->put($url);
+                break;
+            case 'DELETE':
+                $client->delete($url);
+                break;
+            case 'POST':
+                $client->setRequestBody(json_encode($webhook->postData))
+                    ->setHeaders(['content-length' => strlen(json_encode($webhook->postData))])
+                    ->post($url);
+                break;
+            default:
+                throw new Exception('请求类型有误，请判断请求类型');
+        }
+
+        try {
+
+            $resources = json_decode($client->response);
+
+            switch ($client->responseCode) {
+                case 200:
+                    if (!$resources == null || !$resources === false) $response = $this->serializer->map($resources,new Response($webhook));
+                    $response->status = ResponseStatus::OK;
+                    break;
+                case 'timeout':
+                    $response->status = ResponseStatus::FAIL;
+                    break;
+                case 400:
+                    $response->status = ResponseStatus::REQUEST_REJECTED;
+                    break;
+                case 402:
+                    $response->status = ResponseStatus::PAYMENT_REQUIRED;
+                    break;
+                case 405:
+                    $response->status = ResponseStatus::METHOD_NOT_ALLOWED;
+                    break;
+                case 429:
+                    $response->status = ResponseStatus::NOT_ENOUGH_TOKEN;
+                    break;
+                default:
+                    $response->error = $client->response;
+                    $response->status = ResponseStatus::REQUEST_FAILED;
+                    break;
+            }
+        } catch (\Exception $e) {
+            $response->status = ResponseStatus::REQUEST_FAILED;
+            throw $e;
+        }
+
+        $response->url = $url;
+
+        return $response;
+
     }
 
 

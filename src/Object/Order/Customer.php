@@ -27,13 +27,13 @@ class Customer
 
     /**
      * 客户下单数
-     * @var float
+     * @var float|null
      */
     public $orders_count = 0;
 
     /**
      * 顾客消费总额
-     * @var float
+     * @var float|null
      */
     public $total_spent = 0;
 

@@ -26,15 +26,15 @@ class Order
 
     /**
      * 总价
-     * @var float
+     * @var float|null
      */
-    public $total_price	= 0;
+    public $total_price	= 0.0000;
 
     /**
      * 官方文档未说明次字段含义
-     * @var float
+     * @var float|null
      */
-    public $sub_total = 0;
+    public $sub_total = 0.0000;
 
     /**
      * 货币类型
@@ -116,15 +116,15 @@ class Order
 
     /**
      * 订单优惠码优惠价格
-     * @var float
+     * @var float|null
      */
-    public $code_discount_total	= 0;
+    public $code_discount_total	= 0.0000;
 
     /**
      * 商品折扣
-     * @var float
+     * @var float|null
      */
-    public $line_item_discount_total = 0;
+    public $line_item_discount_total = 0.0000;
 
     /**
      * 客户备注
@@ -134,21 +134,21 @@ class Order
 
     /**
      * 订单折扣
-     * @var float
+     * @var float|null
      */
-    public $total_discount = 0;
+    public $total_discount = 0.0000;
 
     /**
      * 总税费
-     * @var float
+     * @var float|null
      */
-    public $total_tax = 0;
+    public $total_tax = 0.0000;
 
     /**
      * 运费
-     * @var float
+     * @var float|null
      */
-    public $total_shipping = 0;
+    public $total_shipping = 0.0000;
 
     /**
      * 创建时间
