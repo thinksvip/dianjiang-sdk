@@ -12,7 +12,7 @@ class Request
     //@var string
     public $method = 'get';
     //@var string
-    public $dataType = 'form';
+    public $dataType = 'json';
 
 
     public function __construct(array $parameter = null)
@@ -82,7 +82,7 @@ class Request
      * @param string $tracking_company 物流公司名称
      * @param string $tracking_company_code 物流公司代码
      */
-    public static function createFulfillments(string $order_id,array $line_item_ids,string $tracking_number,string $tracking_company='',string $tracking_company_code='')
+    public static function createFulfillments(string $order_id,array $line_item_ids,string $tracking_number,string $tracking_company=null,string $tracking_company_code=null)
     {
         $request = new Request();
 
@@ -136,7 +136,7 @@ class Request
      * @param string $tracking_company 物流公司名称
      * @param string $tracking_company_code 物流公司代码
      */
-    public static function saveFulfillment(string $order_id,string $fulfillment_id,string $tracking_number,string $tracking_company='',string $tracking_company_code='')
+    public static function saveFulfillment(string $order_id,string $fulfillment_id,string $tracking_number,string $tracking_company=null,string $tracking_company_code=null)
     {
         $request = new Request();
         $request->bodyData['tracking_number'] = $tracking_number;

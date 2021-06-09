@@ -94,7 +94,6 @@ class DianJiangAPI
 
         // 获取请求Code
         $responseCode = $client->responseCode;
-
         if ($responseCode == 200) {
             try {
 
@@ -103,7 +102,6 @@ class DianJiangAPI
                 if ($resources == null || $resources === false)  throw new \Exception("Failed to parse JSON");
 
                 $response = $this->serializer->map($resources,new Response($request));
-
                 $response->status = ResponseStatus::OK;
             } catch (\Exception $e) {
 
@@ -131,6 +129,10 @@ class DianJiangAPI
                         break;
                     case 405:
                         $response->status = ResponseStatus::METHOD_NOT_ALLOWED;
+                        break;
+                    case 422:
+                        $response->status = ResponseStatus::BUSINESS_EXCEPTION;
+                        $response->error = $client->response;
                         break;
                     case 429:
                         $response->status = ResponseStatus::NOT_ENOUGH_TOKEN;
