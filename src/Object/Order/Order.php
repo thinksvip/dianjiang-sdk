@@ -219,7 +219,7 @@ class Order
 
     /**
      * 店匠返回未知字段
-     * @var \DianJiang\Object\Order\Fulfillments[]|null
+     * @var \DianJiang\Object\Order\Fulfillment[]|null
      */
     public $fulfillments = null;
 

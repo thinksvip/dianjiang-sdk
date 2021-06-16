@@ -117,7 +117,7 @@ class ShippingAddress
 
     /**
      * 特殊物流字段
-     * @var string|null
+     * @var array|null
      */
     public $extra_info = null;
 
