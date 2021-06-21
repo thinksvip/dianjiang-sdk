@@ -3,7 +3,7 @@
     · 通过此API，可以快速获取 PHP Object
 ## Composer
 ```
-composer require thinksvip/dianjiang-sdk:v0.0.1-beta1
+composer require thinksvip/dianjiang-sdk:v0.0.2-beta3
 ```
 # Quick Example
 
@@ -14,6 +14,7 @@ composer require thinksvip/dianjiang-sdk:v0.0.1-beta1
 
 use DianJiang\API\Request;
 use DianJiang\DianJiangAPI;
+use \DianJiang\API\ResponseStatus;
 
     // 获取授权信息
     $api = new DianJiangAPI('Access-Token','YOU_SHOP_NAME');
