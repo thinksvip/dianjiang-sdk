@@ -33,7 +33,6 @@ class DianJiangAPI
 
         $this->shop = $shop;
 
-        $this->curl = new Curl();
         $this->serializer = new JsonMapper();
         if (PHP_INT_SIZE != 8)
             throw new \Exception("This Framework works only on x64 Platforms/PHP!");
@@ -52,6 +51,8 @@ class DianJiangAPI
 
         /* @var Response */
         $response = new Response($request);
+
+        $this->curl = new Curl();
 
         $client = $this->curl
             ->setHeaders([
@@ -165,6 +166,9 @@ class DianJiangAPI
         $response = new Response($webhook);
 
         $url = 'https://' . $this->shop . '.myshoplaza.com/openapi' . self::$VERSION . $webhook->path;
+
+        $this->curl = new Curl();
+
         $client = $this->curl
             ->setHeaders([
                 'Content-Type' => 'application/json',
@@ -176,16 +180,16 @@ class DianJiangAPI
                 $client->get($url);
                 break;
             case 'PUT':
-                $client->setRequestBody(json_encode($webhook->postData))
-                    ->setHeaders(['content-length' => strlen(json_encode($webhook->postData))])
+                $client->setRequestBody(json_encode($webhook->bodyData))
+                    ->setHeaders(['content-length' => strlen(json_encode($webhook->bodyData))])
                     ->put($url);
                 break;
             case 'DELETE':
                 $client->delete($url);
                 break;
             case 'POST':
-                $client->setRequestBody(json_encode($webhook->postData))
-                    ->setHeaders(['content-length' => strlen(json_encode($webhook->postData))])
+                $client->setRequestBody(json_encode($webhook->bodyData))
+                    ->setHeaders(['content-length' => strlen(json_encode($webhook->bodyData))])
                     ->post($url);
                 break;
             default:

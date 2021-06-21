@@ -19,9 +19,9 @@ class Webhook extends Request
     {
         $webhook = new Webhook();
 
-        $webhook->postData['address'] = $address;
+        $webhook->bodyData['address'] = $address;
 
-        $webhook->postData['topic'] = $topic;
+        $webhook->bodyData['topic'] = $topic;
 
         $webhook->path = "webhooks";
 
@@ -91,9 +91,9 @@ class Webhook extends Request
     {
         $webhook = new Webhook();
 
-        $webhook->postData['address'] = $address;
+        $webhook->bodyData['address'] = $address;
 
-        $webhook->postData['topic'] = $topic;
+        $webhook->bodyData['topic'] = $topic;
 
         $webhook->path = "webhooks/$id";
 
