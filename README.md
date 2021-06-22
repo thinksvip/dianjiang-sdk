@@ -14,7 +14,7 @@ composer require thinksvip/dianjiang-sdk:v0.0.2-beta3
 
 use DianJiang\API\Request;
 use DianJiang\DianJiangAPI;
-use \DianJiang\API\ResponseStatus;
+use DianJiang\API\ResponseStatus;
 
     // 获取授权信息
     $api = new DianJiangAPI('Access-Token','YOU_SHOP_NAME');

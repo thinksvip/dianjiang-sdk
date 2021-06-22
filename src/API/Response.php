@@ -49,7 +49,7 @@ class Response
      */
     public $fulfillment;
     
-    /*
+    /**
      * Webhook 返回
      * @var \DianJiang\Object\Webhook
      */

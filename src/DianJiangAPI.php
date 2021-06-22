@@ -171,8 +171,7 @@ class DianJiangAPI
 
         $client = $this->curl
             ->setHeaders([
-                'Content-Type' => 'application/json',
-                'Access-Token' => $this->accessToken,
+                'Access-Token' => $this->accessToken
             ]);
 
         switch ($webhook->requestType){
@@ -181,7 +180,10 @@ class DianJiangAPI
                 break;
             case 'PUT':
                 $client->setRequestBody(json_encode($webhook->bodyData))
-                    ->setHeaders(['content-length' => strlen(json_encode($webhook->bodyData))])
+                    ->setHeaders([
+                        'content-length' => strlen(json_encode($webhook->bodyData)),
+                        'Content-Type' => 'application/json'
+                    ])
                     ->put($url);
                 break;
             case 'DELETE':
@@ -189,7 +191,10 @@ class DianJiangAPI
                 break;
             case 'POST':
                 $client->setRequestBody(json_encode($webhook->bodyData))
-                    ->setHeaders(['content-length' => strlen(json_encode($webhook->bodyData))])
+                    ->setHeaders([
+                        'content-length' => strlen(json_encode($webhook->bodyData)),
+                        'Content-Type' => 'application/json'
+                    ])
                     ->post($url);
                 break;
             default:
