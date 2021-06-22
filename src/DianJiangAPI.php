@@ -16,8 +16,8 @@ class DianJiangAPI
     private $accessToken = null;
 
     private $serializer = null;
+
     private $shop = null;
-    private $curl = null;
     // api 版本
     private static $VERSION = '/2020-07/';
 
@@ -52,9 +52,9 @@ class DianJiangAPI
         /* @var Response */
         $response = new Response($request);
 
-        $this->curl = new Curl();
+        $Curl = new Curl();
 
-        $client = $this->curl
+        $client = $Curl
             ->setHeaders([
                 'Content-Type' => 'application/json',
                 'Access-Token' => $this->accessToken,
@@ -67,31 +67,22 @@ class DianJiangAPI
                 break;
             case 'put':
             case 'post':
-            switch (strtolower($request->dataType)){
-                case 'form':
-                    $params = is_array($request->bodyData) ? $request->bodyData : [];
-                    $client = $client->setPostParams($params)->setHeaders(['content-length' => strlen(json_encode($request->bodyData))]);
-                    break;
-                case 'json':
-                default:
-                    $params = is_array($request->bodyData) ? json_encode($request->bodyData, JSON_UNESCAPED_UNICODE) : json_encode([]);
-                    $client = $client->setRequestBody($params);
-                    break;
-            }
+                switch (strtolower($request->dataType)){
+                    case 'form':
+                        $params = is_array($request->bodyData) ? $request->bodyData : [];
+                        $client = $client->setPostParams($params)->setHeaders(['content-length' => strlen(json_encode($request->bodyData))]);
+                        break;
+                    case 'json':
+                    default:
+                        $params = is_array($request->bodyData) ? json_encode($request->bodyData, JSON_UNESCAPED_UNICODE) : json_encode([]);
+                        $client = $client->setRequestBody($params);
+                        break;
+                }
                 break;
         }
 
         //发起请求
         $client->$method($url);
-
-
-        /*if ($request->postData != null) {
-            $client->setRequestBody(json_encode($request->postData))
-                ->setHeaders(['content-length' => strlen(json_encode($request->postData))])
-                ->post($url);
-        } else {
-            $client->get($url);
-        }*/
 
         // 获取请求Code
         $responseCode = $client->responseCode;
@@ -167,9 +158,9 @@ class DianJiangAPI
 
         $url = 'https://' . $this->shop . '.myshoplaza.com/openapi' . self::$VERSION . $webhook->path;
 
-        $this->curl = new Curl();
+        $Curl = new Curl();
 
-        $client = $this->curl
+        $client = $Curl
             ->setHeaders([
                 'Access-Token' => $this->accessToken
             ]);
