@@ -130,7 +130,7 @@ class DianJiangAPI
                         $response->status = ResponseStatus::NOT_ENOUGH_TOKEN;
                         break;
                     default:
-                        $response->error = $client;
+                        $response->error = $client->response;
                         $response->status = ResponseStatus::REQUEST_FAILED;
                         break;
                 }

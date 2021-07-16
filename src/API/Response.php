@@ -1,6 +1,6 @@
 <?php
-namespace DianJiang\API;
 
+namespace DianJiang\API;
 
 
 class Response
@@ -21,7 +21,7 @@ class Response
 
     /**
      * Contains information about any error that might have occurred.
-     * @var null
+     * @var string|null
      */
     public $error = null;
 
@@ -48,7 +48,7 @@ class Response
      * @var \DianJiang\Object\Order\Fulfillment
      */
     public $fulfillment;
-    
+
     /**
      * Webhook 返回
      * @var \DianJiang\Object\Webhook
